@@ -1,21 +1,26 @@
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { AppContextProvider } from "@/context/App";
 
-export default function LocaleLayout({
+export default async function LocaleLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
-  const { locale } = params;
+  const { locale } = await params;
 
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
 
   return (
-    <NextIntlClientProvider locale={locale}>{children}</NextIntlClientProvider>
+    <AppContextProvider>
+      <NextIntlClientProvider locale={locale}>
+        {children}
+      </NextIntlClientProvider>
+    </AppContextProvider>
   );
 }
