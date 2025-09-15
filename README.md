@@ -1,36 +1,190 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Boilerplate 🚀
 
-## Getting Started
+A **scalable Next.js boilerplate** designed to bootstrap new projects with a clean and extensible architecture.
+It provides a well-defined pattern for **state management**, **API interactions**, **error/loading handling**, and **internationalization**.
 
-First, run the development server:
+---
+
+## 🔑 Key Features
+
+- **Next.js 13+ App Router** with i18n support.
+- **Global state management** with Context + Reducers.
+- **Async actions lifecycle** (`START → SUCCESS → FAIL`) for consistent state transitions.
+- **Encapsulated API calls** with normalized responses.
+- **Predefined components** for error and loading handling.
+- **i18n-ready** with message catalogs (`en`, `it`, …).
+- **Modular structure**: easily add new features without breaking global architecture.
+
+---
+
+## 📂 Project Structure
+
+```
+.
+├── api/                # Application-wide API calls and async tasks
+│   └── App/
+│       ├── endpoint.ts   # Encapsulated API calls (e.g. whoAmI)
+│       └── tasks.ts      # Async logic dispatching actions + endpoints
+│
+├── app/                # Next.js App Router
+│   ├── [locale]/        # Locale-aware routes
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   ├── globals.css      # Global styles
+│   └── layout.tsx       # Root layout
+│
+├── components/         # Reusable UI components
+│   ├── error/
+│   │   └── ErrorBlock.tsx
+│   └── layout/
+│       ├── Loading.tsx
+│       └── ResourceLoader.tsx
+│
+├── context/            # Application contexts
+│   ├── App.tsx          # App context provider (state + dispatch)
+│   └── Contexts.d.ts    # Shared context types
+│
+├── i18n/               # Internationalization utilities
+│   ├── navigation.ts
+│   ├── request.ts
+│   └── routing.ts
+│
+├── messages/           # Translations
+│   ├── en/
+│   │   ├── common.json
+│   │   └── errors.json
+│   └── it/
+│       ├── common.json
+│       └── errors.json
+│
+├── models/             # Data models (per feature/module)
+│   └── app/
+│
+├── modules/            # Business logic per feature
+│   └── app/
+│       ├── actions.ts   # Action creators (async lifecycle)
+│       ├── App.tsx      # Feature-specific components
+│       └── reducer.ts   # Reducer managing feature state
+│
+├── utils/              # Utilities and helpers
+│   ├── actions/
+│   │   └── functions.ts # Async action generator
+│   └── types/           # Shared TypeScript types
+│
+├── public/             # Static assets
+├── middleware.ts       # Middleware (e.g. i18n routing)
+├── next.config.ts      # Next.js configuration
+├── tsconfig.json       # TypeScript configuration
+└── README.md
+```
+
+---
+
+## ⚙️ Flow Overview
+
+Each async operation follows a **predictable lifecycle**:
+
+```
+Component → Task → Action → Reducer → State → UI
+```
+
+1. **Task** (`tasks.ts`)
+
+   - Dispatches `START` action.
+   - Calls endpoint.
+   - Dispatches `SUCCESS` or `FAIL`.
+
+2. **Actions** (`actions.ts`)
+
+   - Define `START`, `SUCCESS`, `FAIL` action creators.
+
+3. **Reducer** (`reducer.ts`)
+
+   - Updates `state.data`, `state.loading`, `state.error` consistently.
+
+4. **State** (`context/App.tsx`)
+
+   - Global state exposed via Context API.
+
+5. **UI** (`components/`)
+
+   - Components read `loading`, `error`, and `data` to render feedback.
+
+---
+
+## 🏗 Adding a New Module
+
+To add a new module (e.g., `user`):
+
+1. Create a folder: `modules/user/`
+
+   - `actions.ts` → define async actions.
+   - `reducer.ts` → handle lifecycle updates.
+   - `User.tsx` → optional UI entrypoint.
+
+2. Create `api/User/`
+
+   - `endpoint.ts` → encapsulate API calls.
+   - `tasks.ts` → define async tasks calling endpoints + dispatching actions.
+
+3. Extend `context/` to register new reducer if needed.
+
+This guarantees that **each feature is isolated but follows the same rules**.
+
+---
+
+## 🚀 Getting Started
+
+```bash
+# Clone the repo
+git clone https://github.com/your-username/nextjs-boilerplate.git
+
+# Install dependencies
+cd nextjs-boilerplate
+npm install
+# or
+yarn install
+```
+
+Start the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📖 Example
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Inside a page or component:
 
-## Learn More
+```tsx
+"use client";
+import { useAppContext } from "@/context/App";
+import { useAppActions } from "@/api/App/tasks";
 
-To learn more about Next.js, take a look at the following resources:
+export default function HomePage() {
+  const { data, loading, error } = useAppContext();
+  const { onWhoAmI } = useAppActions();
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  return (
+    <div>
+      <button onClick={onWhoAmI}>Check Session</button>
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {String(error)}</p>}
+      {data?.name && <p>Welcome, {data.name}!</p>}
+    </div>
+  );
+}
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## ✅ Why This Boilerplate?
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Enforces a **clear architecture**.
+- Avoids repetitive boilerplate across projects.
+- Simplifies onboarding for new developers.
+- Scales smoothly as app complexity grows.
