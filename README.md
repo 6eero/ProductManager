@@ -133,26 +133,31 @@ This guarantees that **each feature is isolated but follows the same rules**.
 
 ---
 
-## 🚀 Getting Started
+## 📖 How to Use this Boilerplate
 
-```bash
-# Clone the repo
-git clone https://github.com/your-username/nextjs-boilerplate.git
+If you want to keep the **full Git history** of the boilerplate in your projects, follow this workflow:
 
-# Install dependencies
-cd nextjs-boilerplate
-npm install
-# or
-yarn install
-```
+1. **Fork** this repository on GitHub.
 
-Start the development server:
+2. **Clone** the fork when starting a new project:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+   ```bash
+   git clone git@github.com:6eero/nextjs-boilerplate.git my-new-project
+   cd my-new-project
+   ```
+
+3. (Optional) **Detach from the fork** so the new project is fully independent:
+
+   ```bash
+   # Remove the original remote
+   git remote remove origin
+
+   # Create a new empty repo on GitHub (e.g. my-new-project)
+   git remote add origin git@github.com:6eero/nextjs-boilerplate.git
+
+   # Push all commits (including boilerplate history) to the new repo
+   git push -u origin main
+   ```
 
 ---
 
