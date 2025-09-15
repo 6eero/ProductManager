@@ -131,32 +131,20 @@ To add a new module (e.g., `user`):
 
 This guarantees that **each feature is isolated but follows the same rules**.
 
----
-
 ## 📖 How to Use this Boilerplate
 
-If you want to keep the **full Git history** of the boilerplate in your projects, follow this workflow:
+This repository is configured as a **GitHub Template**, so you can easily start new projects while preserving the full Git history:
 
-1. **Fork** this repository on GitHub.
-
-2. **Clone** the fork when starting a new project:
+1. Click the green **“Use this template”** button at the top of the repository.
+2. Choose **“Create a new repository”**.
+3. GitHub will generate a brand-new repo with all files and commit history from the boilerplate.
+4. Clone your new repo and start building:
 
    ```bash
    git clone git@github.com:6eero/nextjs-boilerplate.git my-new-project
    cd my-new-project
-   ```
-
-3. (Optional) **Detach from the fork** so the new project is fully independent:
-
-   ```bash
-   # Remove the original remote
-   git remote remove origin
-
-   # Create a new empty repo on GitHub (e.g. my-new-project)
-   git remote add origin git@github.com:6eero/nextjs-boilerplate.git
-
-   # Push all commits (including boilerplate history) to the new repo
-   git push -u origin main
+   npm install
+   npm run dev
    ```
 
 ---
