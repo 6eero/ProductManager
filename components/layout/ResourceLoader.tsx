@@ -44,7 +44,11 @@ export const ResourceLoader = ({
   }, []);
 
   if (loading) {
-    return <Loading />;
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-white">
+        <Loading />
+      </div>
+    );
   }
 
   if (error) {

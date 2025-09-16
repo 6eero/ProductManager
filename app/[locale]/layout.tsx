@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { AppContextProvider } from "@/context/App";
 import { StocksContextProvider } from "@/context/Stocks";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import AppSidebar from "@/components/layout/AppSidebar";
 
 export default async function LocaleLayout({
   children,
@@ -21,7 +23,12 @@ export default async function LocaleLayout({
     <AppContextProvider>
       <StocksContextProvider>
         <NextIntlClientProvider locale={locale}>
-          {children}
+          <SidebarProvider>
+            <AppSidebar />
+            <main>
+              <div className="p-8">{children}</div>
+            </main>
+          </SidebarProvider>
         </NextIntlClientProvider>
       </StocksContextProvider>
     </AppContextProvider>
