@@ -28,7 +28,7 @@ export const useStocksActions = () => {
       }
     },
 
-    onRemove: async () => {
+    onRemove: async (id: string) => {
       try {
         dispatch(actions.remove({}));
         const { data } = await APIStocks.remove();

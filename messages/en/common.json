@@ -1,4 +1,8 @@
 {
+  "generic": {
+    "copy": "Copy",
+    "copy_done": "Copied!"
+  },
   "homepage": {
     "title": "Hello world!"
   },
@@ -6,5 +10,24 @@
     "stocks": "Stocks",
     "settings": "Settings"
   },
-  "header": {}
+  "header": {},
+  "stocks": {
+    "title": "Stocks management",
+    "actions": { "search": "Search a stock...", "add": "Add stock" },
+    "categories": {
+      "electronics": "Electronics",
+      "clothing": "Clothing",
+      "food": "Food"
+    },
+    "table": {
+      "header": {
+        "id": "Code",
+        "name": "Stock",
+        "quantity": "Quantity",
+        "category": "Category",
+        "price": "Price",
+        "actions": "Actions"
+      }
+    }
+  }
 }

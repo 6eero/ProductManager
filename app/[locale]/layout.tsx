@@ -29,7 +29,7 @@ export default async function LocaleLayout({
             <AppSidebar />
             <main className="w-full">
               <AppHeader />
-              <div className="p-8">{children}</div>
+              <div className="p-6">{children}</div>
             </main>
           </SidebarProvider>
         </NextIntlClientProvider>

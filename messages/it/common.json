@@ -1,4 +1,8 @@
 {
+  "generic": {
+    "copy": "Copia",
+    "copy_done": "Copiato!"
+  },
   "homepage": {
     "title": "Ciao mondo!"
   },
@@ -6,5 +10,24 @@
     "stocks": "Prodotti",
     "settings": "Impostazioni"
   },
-  "header": {}
+  "header": {},
+  "stocks": {
+    "title": "Gestione dei prodotti",
+    "actions": { "search": "Cerca un prodotto...", "add": "Aggiungi Prodotto" },
+    "categories": {
+      "electronics": "Elettronica",
+      "clothing": "Abbigliamento",
+      "food": "Alimentari"
+    },
+    "table": {
+      "header": {
+        "id": "Codice",
+        "name": "Prodotto",
+        "quantity": "Quantità",
+        "category": "Categoria",
+        "price": "Prezzo",
+        "actions": "Azioni"
+      }
+    }
+  }
 }
