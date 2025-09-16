@@ -12,3 +12,14 @@ export type AppAction = {
   type: string;
   payload?: any;
 };
+
+export type StocksState = {
+  loading: boolean;
+  error: boolean;
+  data: any;
+};
+
+export type StocksAction = {
+  type: string;
+  payload?: any;
+};

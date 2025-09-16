@@ -2,6 +2,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { AppContextProvider } from "@/context/App";
+import { StocksContextProvider } from "@/context/Stocks";
 
 export default async function LocaleLayout({
   children,
@@ -18,9 +19,11 @@ export default async function LocaleLayout({
 
   return (
     <AppContextProvider>
-      <NextIntlClientProvider locale={locale}>
-        {children}
-      </NextIntlClientProvider>
+      <StocksContextProvider>
+        <NextIntlClientProvider locale={locale}>
+          {children}
+        </NextIntlClientProvider>
+      </StocksContextProvider>
     </AppContextProvider>
   );
 }

@@ -59,11 +59,12 @@ It provides a well-defined pattern for **state management**, **API interactions*
 │
 ├── models/             # Data models (per feature/module)
 │   └── app/
+│       └── index.ts    # Generic Types
 │
 ├── modules/            # Business logic per feature
 │   └── app/
-│       ├── actions.ts   # Action creators (async lifecycle)
 │       ├── App.tsx      # Feature-specific components
+│       ├── actions.ts   # Action creators (async lifecycle)
 │       └── reducer.ts   # Reducer managing feature state
 │
 ├── utils/              # Utilities and helpers
