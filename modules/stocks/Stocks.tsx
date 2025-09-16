@@ -6,7 +6,7 @@ import { StocksContext, useStocksContext } from "@/context/Stocks";
 import { useTranslations } from "next-intl";
 
 const Stocks = () => {
-  const t = useTranslations("HomePage");
+  const t = useTranslations("homepage");
   const { onLoad } = useStocksActions();
   const context = useStocksContext();
 

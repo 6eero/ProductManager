@@ -3,8 +3,10 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { AppContextProvider } from "@/context/App";
 import { StocksContextProvider } from "@/context/Stocks";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import AppSidebar from "@/components/layout/AppSidebar";
+import { User2 } from "lucide-react";
+import AppHeader from "@/components/layout/AppHeader";
 
 export default async function LocaleLayout({
   children,
@@ -25,7 +27,8 @@ export default async function LocaleLayout({
         <NextIntlClientProvider locale={locale}>
           <SidebarProvider>
             <AppSidebar />
-            <main>
+            <main className="w-full">
+              <AppHeader />
               <div className="p-8">{children}</div>
             </main>
           </SidebarProvider>

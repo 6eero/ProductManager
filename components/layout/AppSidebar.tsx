@@ -1,59 +1,61 @@
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarSeparator,
-  SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { Home, Settings } from "lucide-react";
-import Logo from "../Logo";
+import { ScanBarcode, Settings } from "lucide-react";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 const items = [
   {
-    title: "Stocks",
+    title: "sidebar.stocks",
     url: "",
-    icon: Home,
+    icon: ScanBarcode,
   },
   {
-    title: "Settings",
+    title: "sidebar.settings",
     url: "/settings",
     icon: Settings,
   },
 ];
 
 const AppSidebar = () => {
+  const t = useTranslations();
   return (
-    <Sidebar variant="sidebar" collapsible="icon">
-      <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild className="py-1">
-              <a href="#">
-                <Logo />
-                <span className="text-base font-semibold">Tecnoteca SRL</span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
+    <Sidebar variant="sidebar">
+      <SidebarHeader className="items-center py-6">
+        <Image
+          src="/logo_extended.png"
+          alt="Tecnoteca Logo"
+          width={150}
+          height={150}
+          className="object-contain"
+        />
       </SidebarHeader>
+
       <SidebarContent>
-        <SidebarSeparator />
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
-                <SidebarMenuItem key={item.title} className="py-1">
+                <SidebarMenuItem key={item.title} className="p-2">
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
+                    <a
+                      href={item.url}
+                      className="flex justify-between items-center"
+                    >
+                      <div className="flex gap-2 items-center">
+                        <item.icon size={18} />
+                        <span className="text-[16px] font-medium">
+                          {t(item.title)}
+                        </span>
+                      </div>
                     </a>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -62,9 +64,6 @@ const AppSidebar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter>
-        <SidebarTrigger />
-      </SidebarFooter>
     </Sidebar>
   );
 };
