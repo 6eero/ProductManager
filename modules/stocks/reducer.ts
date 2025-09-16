@@ -20,7 +20,6 @@ const reducer = produce(
       case actions.ADD_SUCCESS:
       case actions.REMOVE_SUCCESS:
       case actions.UPDATE_SUCCESS: {
-        console.log("reducer");
         const { data } = action.payload;
         state.data = data;
         state.loading = false;

@@ -67,6 +67,9 @@ It provides a well-defined pattern for **state management**, **API interactions*
 │       ├── actions.ts   # Action creators (async lifecycle)
 │       └── reducer.ts   # Reducer managing feature state
 │
+├── mocks/
+│   └── stocks.ts
+│
 ├── utils/              # Utilities and helpers
 │   ├── actions/
 │   │   └── functions.ts # Async action generator
