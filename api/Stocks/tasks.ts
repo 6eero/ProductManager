@@ -1,9 +1,9 @@
-import { useAppDispatchContext } from "@/context/App";
-import actions from "@/modules/app/actions";
+import { useStocksDispatchContext } from "@/context/Stocks";
+import actions from "@/modules/stocks/actions";
 import * as APIStocks from "./endpoint";
 
 export const useStocksActions = () => {
-  const dispatch = useAppDispatchContext();
+  const dispatch = useStocksDispatchContext();
 
   return {
     onLoad: async () => {

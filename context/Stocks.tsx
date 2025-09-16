@@ -6,7 +6,7 @@ import { StocksState, StocksAction, BaseProvider } from "@/context/Contexts";
 
 const initState: StocksState = {
   data: {},
-  loading: false,
+  loading: true,
   error: false,
 };
 
