@@ -9,6 +9,13 @@ import DetailCopy from "@/components/details/DetailCopy";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
+const categoryColors: Record<string, string> = {
+  electronics: "bg-secondary",
+  clothing: "bg-primary",
+  food: "bg-pink-500",
+  default: "bg-red-500",
+};
+
 export function useStockColumns(
   onEdit: (stock: Stock) => void,
   onDelete?: (stock: Stock) => void
@@ -78,7 +85,14 @@ export function useStockColumns(
       cell: ({ row }) => {
         const category = row.getValue<string>("category");
         return (
-          <Badge variant="outline">{t(`stocks.categories.${category}`)}</Badge>
+          <Badge variant="outline" className="bg-primary/5">
+            <div
+              className={`w-1.5 h-1.5 rounded-2xl mr-0.5 ${
+                categoryColors[category] || categoryColors.default
+              }`}
+            />
+            {t(`stocks.categories.${category}`)}
+          </Badge>
         );
       },
     },
