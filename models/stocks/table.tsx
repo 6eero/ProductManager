@@ -2,15 +2,14 @@
 
 import { Badge } from "@/components/ui/badge";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, Copy, SquarePen, Trash } from "lucide-react";
+import { ArrowUpDown, SquarePen, Trash } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Stock } from ".";
 import DetailCopy from "@/components/details/DetailCopy";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
-export function useAssetColumns(
+export function useStockColumns(
   onEdit: (stock: Stock) => void,
   onDelete?: (stock: Stock) => void
 ): ColumnDef<Stock>[] {
@@ -113,19 +112,26 @@ export function useAssetColumns(
         </span>
       ),
       cell: ({ row }) => {
-        const asset = row.original;
+        const stock = row.original;
         return (
-          <div className="flex items-center gap-6 justify-end w-full">
-            <SquarePen
-              size={20}
-              className="text-gray-400 cursor-pointer"
-              onClick={() => onEdit(asset)}
-            />
-            <Trash
-              size={20}
-              className="text-destructive cursor-pointer"
-              onClick={() => onDelete?.(asset)}
-            />
+          <div className="flex items-center gap-3 justify-end w-full">
+            {/* Edit button */}
+            <button
+              onClick={() => onEdit(stock)}
+              className="p-2 rounded-full bg-primary/7 hover:bg-primary/10 transition-colors"
+            >
+              <SquarePen size={14} className="text-primary" />
+              <span className="sr-only">Edit stock</span>
+            </button>
+
+            {/* Delete button */}
+            <button
+              onClick={() => onDelete?.(stock)}
+              className="p-2 rounded-full bg-red-50 hover:bg-red-100 transition-colors"
+            >
+              <Trash size={14} className="text-red-600" />
+              <span className="sr-only">Delete stock</span>
+            </button>
           </div>
         );
       },

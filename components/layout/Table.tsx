@@ -69,6 +69,7 @@ export function DataTable<TData, TValue>({
     <div>
       <div className="flex justify-between items-center mb-4">
         <Input
+          aria-label={t("stocks.actions.search")}
           placeholder={t("stocks.actions.search")}
           className="bg-white w-[500px]"
           value={(table.getColumn("id")?.getFilterValue() as string) ?? ""}
@@ -138,6 +139,7 @@ export function DataTable<TData, TValue>({
             disabled={!table.getCanPreviousPage()}
           >
             <ChevronLeft />
+            <span className="sr-only">Previous page</span>
           </Button>
 
           {Array.from({ length: pageCount }, (_, index) => (
@@ -158,6 +160,7 @@ export function DataTable<TData, TValue>({
             disabled={!table.getCanNextPage()}
           >
             <ChevronRight />
+            <span className="sr-only">Next page</span>
           </Button>
         </div>
       </div>
