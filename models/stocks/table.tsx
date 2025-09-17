@@ -2,12 +2,18 @@
 
 import { Badge } from "@/components/ui/badge";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, SquarePen, Trash } from "lucide-react";
+import { ArrowUpDown, Filter, SquarePen, Trash } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Stock } from ".";
+import { Category, Stock } from ".";
 import DetailCopy from "@/components/details/DetailCopy";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const categoryColors: Record<string, string> = {
   electronics: "bg-secondary",
@@ -16,16 +22,29 @@ const categoryColors: Record<string, string> = {
   default: "bg-red-500",
 };
 
+import * as R from "ramda";
+
 export function useStockColumns(
   onEdit: (stock: Stock) => void,
   onDelete?: (stock: Stock) => void
 ): ColumnDef<Stock>[] {
   const t = useTranslations("");
   const [orderingCol, setOrderingCol] = useState("");
+  const [isFiltering, setIsFiltering] = useState(false);
 
   const handleOrder = (column: any) => {
     setOrderingCol(column.id);
     column.toggleSorting(column.getIsSorted() === "asc");
+  };
+
+  const handleSetFilters = (column: any, filter: Category) => {
+    if (R.isNotNil(filter)) {
+      console.log(filter);
+      setIsFiltering(true);
+    } else {
+      setIsFiltering(false);
+    }
+    column.setFilterValue(filter);
   };
 
   return [
@@ -58,10 +77,13 @@ export function useStockColumns(
       accessorKey: "quantity",
       header: ({ column }) => {
         return (
-          <Button variant="ghost" onClick={() => handleOrder(column)}>
-            <span className="font-bold">
-              {t("stocks.table.header.quantity")}
-            </span>
+          <Button
+            className="font-bold !p-0 !m-0"
+            variant="ghost"
+            onClick={() => handleOrder(column)}
+          >
+            {t("stocks.table.header.quantity")}
+
             <ArrowUpDown
               size={1}
               className={
@@ -74,7 +96,7 @@ export function useStockColumns(
 
       cell: ({ row }) => {
         const quantity = row.getValue<number>("quantity");
-        return <code>{quantity}</code>;
+        return <span>{quantity}</span>;
       },
     },
     {
@@ -95,13 +117,48 @@ export function useStockColumns(
           </Badge>
         );
       },
+      filterFn: "equals",
+      meta: {
+        Filter: ({ column }: any) => (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="ml-1.5">
+                <Filter
+                  className={
+                    isFiltering
+                      ? "!h-3.5 !w-3.5 text-secondary"
+                      : "!h-3.5 !w-3.5 text-gray-400"
+                  }
+                />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-32">
+              {R.map(
+                (option: Category) => (
+                  <DropdownMenuItem
+                    key={option ?? "all"}
+                    onClick={() => handleSetFilters(column, option)}
+                  >
+                    {t(`stocks.categories.${option}`)}
+                  </DropdownMenuItem>
+                ),
+                [undefined, "electronics", "clothing", "food"]
+              )}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        ),
+      },
     },
     {
       accessorKey: "price",
       header: ({ column }) => {
         return (
-          <Button variant="ghost" onClick={() => handleOrder(column)}>
-            <span className="font-bold">{t("stocks.table.header.price")}</span>
+          <Button
+            className="font-bold !p-0 !m-0"
+            variant="ghost"
+            onClick={() => handleOrder(column)}
+          >
+            {t("stocks.table.header.price")}
             <ArrowUpDown
               size={1}
               className={

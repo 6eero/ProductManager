@@ -3,55 +3,28 @@
 import { useStocksActions } from "@/api/Stocks/tasks";
 import { ResourceLoader } from "@/components/layout/ResourceLoader";
 import { DataTable } from "@/components/layout/Table";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { StocksContext, useStocksContext } from "@/context/Stocks";
-import { useModalState } from "@/hooks/useModalState";
 import { Stock } from "@/models/stocks";
 import { useStockColumns } from "@/models/stocks/table";
-import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 import * as R from "ramda";
 
 const Stocks = () => {
   const t = useTranslations("");
-  const { onLoad, onRemove } = useStocksActions();
+  const { onLoad } = useStocksActions();
   const context = useStocksContext();
 
-  const {
-    setIsManageStockModalOpen,
-    clickedStock,
-    setClickedStock,
-    openManageModal,
-    openDangerModal,
-  } = useModalState();
-
-  const handleEditStock = (stock: Stock) => {
-    openManageModal({
-      id: stock.id,
-      name: stock.name,
-      quantity: stock.quantity,
-      category: stock.category,
-      price: stock.price,
-    });
+  const openDeleteModal = (stock: Stock): void => {
+    throw new Error("Function not implemented.");
+  };
+  const openAddModal = (stock: Stock): void => {
+    throw new Error("Function not implemented.");
+  };
+  const openEditModal = (stock: Stock): void => {
+    throw new Error("Function not implemented.");
   };
 
-  const handleDeleteAsset = (stock: Stock) => {
-    openDangerModal({
-      id: stock.id,
-      name: stock.name,
-      quantity: stock.quantity,
-      category: stock.category,
-      price: stock.price,
-    });
-  };
-
-  const handleConfirmDelete = () => {
-    onRemove(clickedStock.id);
-  };
-
-  const columns = useStockColumns(handleEditStock, handleDeleteAsset);
-
+  const columns = useStockColumns(openEditModal, openDeleteModal);
   const stocks = R.pathOr([], ["data", "stocks"])(context);
 
   return (

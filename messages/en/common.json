@@ -18,6 +18,7 @@
       "add": "Add stock"
     },
     "categories": {
+      "undefined": "All",
       "electronics": "Electronics",
       "clothing": "Clothing",
       "food": "Food"

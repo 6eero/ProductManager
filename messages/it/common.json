@@ -18,6 +18,7 @@
       "add": "Aggiungi Prodotto"
     },
     "categories": {
+      "undefined": "Tutto",
       "electronics": "Elettronica",
       "clothing": "Abbigliamento",
       "food": "Alimentari"
