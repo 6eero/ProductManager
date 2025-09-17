@@ -13,7 +13,10 @@
   "header": {},
   "stocks": {
     "title": "Gestione dei prodotti",
-    "actions": { "search": "Cerca un prodotto...", "add": "Aggiungi Prodotto" },
+    "actions": {
+      "search": "Cerca un prodotto per codice o per nome...",
+      "add": "Aggiungi Prodotto"
+    },
     "categories": {
       "electronics": "Elettronica",
       "clothing": "Abbigliamento",

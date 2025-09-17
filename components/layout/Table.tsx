@@ -40,25 +40,38 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [globalFilter, setGlobalFilter] = useState<string>("");
   const t = useTranslations("");
+
+  // Funzione personalizzata per il filtro globale
+  const globalFilterFn = (row: any, columnId: string, filterValue: string) => {
+    const id = row.getValue("id")?.toString().toLowerCase() || "";
+    const name = row.getValue("name")?.toString().toLowerCase() || "";
+    const searchValue = filterValue.toLowerCase();
+
+    return id.includes(searchValue) || name.includes(searchValue);
+  };
 
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
     initialState: {
       pagination: {
         pageSize: 10,
       },
     },
     onSortingChange: setSorting,
-    getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
-    getFilteredRowModel: getFilteredRowModel(),
+    onGlobalFilterChange: setGlobalFilter,
+    globalFilterFn: globalFilterFn,
     state: {
       sorting,
       columnFilters,
+      globalFilter,
     },
   });
 
@@ -70,12 +83,10 @@ export function DataTable<TData, TValue>({
       <div className="flex justify-between items-center mb-4">
         <Input
           aria-label={t("stocks.actions.search")}
-          placeholder={t("stocks.actions.search")}
+          placeholder={`${t("stocks.actions.search")}`}
           className="bg-white w-[500px]"
-          value={(table.getColumn("id")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("id")?.setFilterValue(event.target.value)
-          }
+          value={globalFilter ?? ""}
+          onChange={(event) => setGlobalFilter(event.target.value)}
         />
         <Button className="shadow-xs">
           <Plus /> {t("stocks.actions.add")}

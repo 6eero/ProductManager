@@ -13,7 +13,10 @@
   "header": {},
   "stocks": {
     "title": "Stocks management",
-    "actions": { "search": "Search a stock...", "add": "Add stock" },
+    "actions": {
+      "search": "Search a stock by code or name...",
+      "add": "Add stock"
+    },
     "categories": {
       "electronics": "Electronics",
       "clothing": "Clothing",
