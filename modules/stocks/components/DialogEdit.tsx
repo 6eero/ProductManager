@@ -1,6 +1,6 @@
 import SubmitModal from "@/components/modals/SubmitModal";
 
-const DialogAdd = ({
+const DialogEdit = ({
   open,
   setOpen,
   onSubmit,
@@ -11,17 +11,17 @@ const DialogAdd = ({
 }) => {
   return (
     <SubmitModal
-      title={"stocks.modals.add.title"}
-      dscription={"stocks.modals.add.description"}
-      okButtonText={"stocks.modals.add.ok"}
-      cancelButtonText={"stocks.modals.add.cancel"}
+      title={"stocks.modals.edit.title"}
+      dscription={"stocks.modals.edit.description"}
+      okButtonText={"stocks.modals.edit.ok"}
+      cancelButtonText={"stocks.modals.edit.cancel"}
       open={open}
       setOpen={setOpen}
       onSubmit={onSubmit}
     >
-      aaaa
+      bbbb
     </SubmitModal>
   );
 };
 
-export default DialogAdd;
+export default DialogEdit;

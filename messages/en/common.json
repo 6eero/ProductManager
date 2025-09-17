@@ -17,6 +17,26 @@
       "search": "Search a stock by code or name...",
       "add": "Add stock"
     },
+    "modals": {
+      "add": {
+        "title": "Add a new stock",
+        "description": "Fill in the required fields. Once submitted, the stock will be added to your list.",
+        "ok": "Add stock",
+        "cancel": "Cancel"
+      },
+      "edit": {
+        "title": "Edit stock",
+        "description": "Update the desired fields. Once submitted, the changes will be applied to your list.",
+        "ok": "Save changes",
+        "cancel": "Cancel"
+      },
+      "delete": {
+        "title": "Delete this stock",
+        "description": "Are you sure you want to delete this stock? Tis action is irreversible",
+        "ok": "Delete stock",
+        "cancel": "Cancel"
+      }
+    },
     "categories": {
       "undefined": "All",
       "electronics": "Electronics",

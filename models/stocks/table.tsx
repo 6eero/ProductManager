@@ -39,7 +39,6 @@ export function useStockColumns(
 
   const handleSetFilters = (column: any, filter: Category) => {
     if (R.isNotNil(filter)) {
-      console.log(filter);
       setIsFiltering(true);
     } else {
       setIsFiltering(false);

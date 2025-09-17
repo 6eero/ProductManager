@@ -17,6 +17,26 @@
       "search": "Cerca un prodotto per codice o per nome...",
       "add": "Aggiungi Prodotto"
     },
+    "modals": {
+      "add": {
+        "title": "Aggiungi un nuovo prodotto",
+        "description": "Compila i campi obbligatori. Una volta inviato, il prodotto sarà aggiunto alla tua lista.",
+        "ok": "Aggiungi prodotto",
+        "cancel": "Annulla"
+      },
+      "edit": {
+        "title": "Modifica titolo",
+        "description": "Aggiorna i campi desiderati. Dopo l'invio, le modifiche saranno applicate alla tua lista.",
+        "ok": "Salva modifiche",
+        "cancel": "Annulla"
+      },
+      "delete": {
+        "title": "Elimina questo prodotto",
+        "description": "Sei sicuro di voler eliminare questo prodotto? Questa azione è irreversibile.",
+        "ok": "Elimina prodotto",
+        "cancel": "Annulla"
+      }
+    },
     "categories": {
       "undefined": "Tutto",
       "electronics": "Elettronica",
