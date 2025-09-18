@@ -1,7 +1,7 @@
-export type Category = "electronics" | "clothing" | "food" | undefined;
+export type Category = "electronics" | "clothing" | "food";
 
 export interface Stock {
-  id: string;
+  id?: string;
   name: string;
   quantity: number;
   category: Category;

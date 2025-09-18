@@ -15,6 +15,7 @@ export type AppAction = {
 
 export type StocksState = {
   loading: boolean;
+  updating: boolean;
   error: boolean;
   data: any;
 };

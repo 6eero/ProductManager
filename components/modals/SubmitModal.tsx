@@ -32,10 +32,7 @@ const SubmitModal = ({
   onSubmit: () => void;
 }) => {
   const t = useTranslations("");
-  const handleSubmit = () => {
-    onSubmit();
-    setOpen(false);
-  };
+
   return (
     <Dialog open={open}>
       <form>
@@ -52,7 +49,7 @@ const SubmitModal = ({
             <DialogClose asChild onClick={() => setOpen(false)}>
               <Button variant="outline">{t(cancelButtonText)}</Button>
             </DialogClose>
-            <Button type="submit" onClick={handleSubmit}>
+            <Button type="button" onClick={onSubmit}>
               {t(okButtonText)}
             </Button>
           </DialogFooter>

@@ -45,7 +45,7 @@ export const ResourceLoader = ({
 
   if (loading) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center bg-white">
+      <div className="fixed inset-0 flex items-center justify-center bg-background">
         <Loading />
       </div>
     );

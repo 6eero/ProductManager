@@ -3,6 +3,11 @@
     "copy": "Copy",
     "copy_done": "Copied!"
   },
+  "validation": {
+    "required": "This field is required",
+    "positive": "Must be greather than zero",
+    "invalid": "Invalid input"
+  },
   "homepage": {
     "title": "Hello world!"
   },
@@ -22,7 +27,25 @@
         "title": "Add a new stock",
         "description": "Fill in the required fields. Once submitted, the stock will be added to your list.",
         "ok": "Add stock",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "fields": {
+          "name": {
+            "label": "Name",
+            "placeholder": "Enter the product name"
+          },
+          "quantity": {
+            "label": "Available quantity",
+            "placeholder": "Enter the available quantity"
+          },
+          "category": {
+            "label": "Category",
+            "placeholder": "Select the category"
+          },
+          "price": {
+            "label": "Unit price",
+            "placeholder": "Enter the unit price"
+          }
+        }
       },
       "edit": {
         "title": "Edit stock",

@@ -3,6 +3,11 @@
     "copy": "Copia",
     "copy_done": "Copiato!"
   },
+  "validation": {
+    "required": "Il campo è obbligatorio",
+    "positive": "Deve essere maggiore di zero",
+    "invalid": "Non valido"
+  },
   "homepage": {
     "title": "Ciao mondo!"
   },
@@ -22,7 +27,25 @@
         "title": "Aggiungi un nuovo prodotto",
         "description": "Compila i campi obbligatori. Una volta inviato, il prodotto sarà aggiunto alla tua lista.",
         "ok": "Aggiungi prodotto",
-        "cancel": "Annulla"
+        "cancel": "Annulla",
+        "fields": {
+          "name": {
+            "label": "Nome",
+            "placeholder": "Inserisci il nome del prodotto"
+          },
+          "quantity": {
+            "label": "Quantità disponibile",
+            "placeholder": "Inserisci la quantità disponibile"
+          },
+          "category": {
+            "label": "Categoria",
+            "placeholder": "Seleziona la categoria"
+          },
+          "price": {
+            "label": "Prezzo unitario",
+            "placeholder": "Inserisci il prezzo unitario"
+          }
+        }
       },
       "edit": {
         "title": "Modifica titolo",

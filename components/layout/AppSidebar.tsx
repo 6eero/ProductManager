@@ -30,13 +30,13 @@ const AppSidebar = () => {
   return (
     <Sidebar variant="sidebar">
       <SidebarHeader className="items-center py-6">
-        {/* <Image
+        <Image
           src="/logo_extended.png"
           alt="Tecnoteca Logo"
           width={150}
           height={150}
           className="object-contain"
-        /> */}
+        />
       </SidebarHeader>
 
       <SidebarContent>

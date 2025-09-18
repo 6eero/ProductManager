@@ -5,12 +5,19 @@ const reducer = produce(
   (state: any, action: { type: string; payload?: any }) => {
     switch (action.type) {
       // BASE
-      case actions.GET:
+      case actions.GET: {
+        state.data = {};
+        state.loading = true;
+        state.updating = false;
+        state.error = false;
+        return;
+      }
+
       case actions.ADD:
       case actions.REMOVE:
       case actions.UPDATE: {
-        state.data = {};
-        state.loading = true;
+        state.loading = false;
+        state.updating = true;
         state.error = false;
         return;
       }
@@ -23,6 +30,7 @@ const reducer = produce(
         const { data } = action.payload;
         state.data = data;
         state.loading = false;
+        state.updating = false;
         state.error = false;
         return;
       }
@@ -34,6 +42,7 @@ const reducer = produce(
       case actions.UPDATE_FAIL: {
         const { error } = action.payload;
         state.loading = false;
+        state.updating = false;
         state.error = error;
         return;
       }
