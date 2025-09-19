@@ -21,6 +21,7 @@ export const whoAmI = async () => {
     name: "Mario",
     surname: "Rossi",
     username: "46375648294",
+    email: "mariorossi@email.com",
   };
   return { data: response, headers: {} };
 };

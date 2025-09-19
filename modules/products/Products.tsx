@@ -1,12 +1,11 @@
 "use client";
 
-import { useStocksActions } from "@/api/Stocks/tasks";
+import { useProductsActions } from "@/api/Products/tasks";
 import { ResourceLoader } from "@/components/layout/ResourceLoader";
 import { DataTable } from "@/components/layout/Table";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { StocksContext, useStocksContext } from "@/context/Stocks";
-import { useStockColumns } from "@/models/stocks/table";
+import { ProductsContext, useProductsContext } from "@/context/Products";
+import { useProductColumns } from "@/models/products/table";
 import {
   useReactTable,
   getCoreRowModel,
@@ -20,42 +19,37 @@ import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 import * as R from "ramda";
 import { useState } from "react";
-import DialogAdd from "./components/DialogAdd";
-import DangerModal from "@/components/modals/DangerModal";
-import DialogEdit from "./components/DialogEdit";
 import CustomButton from "@/components/buttons/CustomButton";
 import { useValidationSchemas } from "@/hooks/useValidationSchemas";
-import { Stock } from "@/models/stocks";
+import { Product } from "@/models/products";
+import DialogManage from "./components/DialogManage";
+import DangerModal from "@/components/modals/DangerModal";
 
-const Stocks = () => {
+const Products = () => {
   const t = useTranslations("");
   const { product } = useValidationSchemas();
-  const { onLoad, onAdd, onRemove, onUpdate } = useStocksActions();
-  const context = useStocksContext();
+  const { onLoad, onAdd, onRemove, onUpdate } = useProductsActions();
+  const context = useProductsContext();
 
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = useState<string>("");
-  const [selectedStock, setSelectedStock] = useState<any>(null);
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
 
-  const handleOpenDeleteModal = (stock: Stock) => {
-    setSelectedStock(stock);
+  const handleOpenDeleteModal = (product: Product) => {
+    setSelectedProduct(product);
     setIsDeleteModalOpen(true);
   };
-  const handleOpenEditModal = (stock: Stock) => {
-    setSelectedStock(stock);
+  const handleOpenEditModal = (product: Product) => {
+    setSelectedProduct(product);
     setIsEditModalOpen(true);
   };
   const handleCloseDeleteModal = () => {
     setIsDeleteModalOpen(false);
-    setSelectedStock(null);
-  };
-  const handleCloseEditModal = () => {
-    setIsEditModalOpen(false);
-    setSelectedStock(null);
+    setSelectedProduct(null);
   };
 
   const globalFilterFn = (row: any, columnId: string, filterValue: string) => {
@@ -65,12 +59,12 @@ const Stocks = () => {
     return id.includes(searchValue) || name.includes(searchValue);
   };
 
-  const stocks = R.pathOr([], ["data", "stocks"])(context);
+  const products = R.pathOr([], ["data", "products"])(context);
   const updating = R.pathOr(false, ["updating"])(context);
-  const columns = useStockColumns(handleOpenEditModal, handleOpenDeleteModal);
+  const columns = useProductColumns(handleOpenEditModal, handleOpenDeleteModal);
 
   const table = useReactTable({
-    data: stocks,
+    data: products,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -93,46 +87,48 @@ const Stocks = () => {
   });
 
   const handleDelete = () => {
-    onRemove(selectedStock.id, stocks);
+    onRemove(selectedProduct.id, products);
   };
-  const handleAdd = (stock: Stock) => {
-    onAdd(stock, stocks);
+  const handleAdd = (product: Product) => {
+    onAdd(product, products);
   };
-  const handleEdit = (stock: Stock) => {
-    onUpdate(stock, stocks);
+  const handleEdit = (product: Product) => {
+    onUpdate(product, products);
   };
 
   return (
-    <ResourceLoader onLoad={onLoad} context={StocksContext}>
+    <ResourceLoader onLoad={onLoad} context={ProductsContext}>
       {/* Dialogs */}
-      <DialogAdd
+      <DialogManage
         open={isAddModalOpen}
         setOpen={setIsAddModalOpen}
-        validationSchema={product}
+        mode="add"
         onSubmit={handleAdd}
-      />
-      <DialogEdit
-        open={isEditModalOpen}
-        setOpen={handleCloseEditModal}
         validationSchema={product}
+      />
+      <DialogManage
+        open={isEditModalOpen}
+        setOpen={setIsEditModalOpen}
+        mode="edit"
         onSubmit={handleEdit}
-        stock={selectedStock}
+        validationSchema={product}
+        product={selectedProduct}
       />
       <DangerModal
         open={isDeleteModalOpen}
         setOpen={handleCloseDeleteModal}
         onSubmit={handleDelete}
-        title={"stocks.modals.delete.title"}
-        dscription={"stocks.modals.delete.description"}
-        okButtonText={"stocks.modals.delete.ok"}
-        cancelButtonText={"stocks.modals.delete.cancel"}
+        title={"products.modals.delete.title"}
+        dscription={"products.modals.delete.description"}
+        okButtonText={"products.modals.delete.ok"}
+        cancelButtonText={"products.modals.delete.cancel"}
       />
 
       {/* Page content */}
-      <h1 className="text-2xl font-medium mb-10">{t("stocks.title")}</h1>
+      <h1 className="text-2xl font-medium mb-10">{t("products.title")}</h1>
       <div className="flex justify-between items-center mb-4">
         <Input
-          placeholder={t("stocks.actions.search")}
+          placeholder={t("products.actions.search")}
           className="bg-white w-[500px]"
           value={globalFilter ?? ""}
           onChange={(event) => setGlobalFilter(event.target.value)}
@@ -140,7 +136,7 @@ const Stocks = () => {
         />
         <CustomButton
           onClick={() => setIsAddModalOpen(true)}
-          text={"stocks.actions.add"}
+          text={"products.actions.add"}
           icon={<Plus />}
           loading={updating}
         />
@@ -150,4 +146,4 @@ const Stocks = () => {
   );
 };
 
-export default Stocks;
+export default Products;

@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, Filter, SquarePen, Trash } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Category, Stock } from ".";
+import { Category, Product } from ".";
 import DetailCopy from "@/components/details/DetailCopy";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -24,10 +24,10 @@ const categoryColors: Record<string, string> = {
 
 import * as R from "ramda";
 
-export function useStockColumns(
-  onEdit: (stock: Stock) => void,
-  onDelete?: (stock: Stock) => void
-): ColumnDef<Stock>[] {
+export function useProductColumns(
+  onEdit: (product: Product) => void,
+  onDelete?: (product: Product) => void
+): ColumnDef<Product>[] {
   const t = useTranslations("");
   const [orderingCol, setOrderingCol] = useState("");
   const [isFiltering, setIsFiltering] = useState(false);
@@ -37,13 +37,14 @@ export function useStockColumns(
     column.toggleSorting(column.getIsSorted() === "asc");
   };
 
-  const handleSetFilters = (column: any, filter: Category) => {
-    if (R.isNotNil(filter)) {
-      setIsFiltering(true);
-    } else {
+  const handleSetFilters = (column: any, filter: Category | "all") => {
+    if (filter === "all") {
+      column.setFilterValue(undefined); // ❌ toglie il filtro
       setIsFiltering(false);
+    } else {
+      column.setFilterValue(filter); // ✅ applica il filtro
+      setIsFiltering(true);
     }
-    column.setFilterValue(filter);
   };
 
   return [
@@ -51,7 +52,7 @@ export function useStockColumns(
       accessorKey: "id",
       header: () => (
         <span className="font-bold text-left">
-          {t("stocks.table.header.id")}
+          {t("products.table.header.id")}
         </span>
       ),
       cell: ({ row }) => {
@@ -64,7 +65,7 @@ export function useStockColumns(
       accessorKey: "name",
       header: () => (
         <span className="font-bold text-left">
-          {t("stocks.table.header.name")}
+          {t("products.table.header.name")}
         </span>
       ),
       cell: ({ row }) => {
@@ -81,7 +82,7 @@ export function useStockColumns(
             variant="ghost"
             onClick={() => handleOrder(column)}
           >
-            {t("stocks.table.header.quantity")}
+            {t("products.table.header.quantity")}
 
             <ArrowUpDown
               size={1}
@@ -101,7 +102,7 @@ export function useStockColumns(
     {
       accessorKey: "category",
       header: () => (
-        <span className="font-bold">{t("stocks.table.header.category")}</span>
+        <span className="font-bold">{t("products.table.header.category")}</span>
       ),
       cell: ({ row }) => {
         const category = row.getValue<string>("category");
@@ -112,7 +113,7 @@ export function useStockColumns(
                 categoryColors[category] || categoryColors.default
               }`}
             />
-            {t(`stocks.categories.${category}`)}
+            {t(`products.categories.${category}`)}
           </Badge>
         );
       },
@@ -133,15 +134,15 @@ export function useStockColumns(
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-32">
               {R.map(
-                (option: Category) => (
+                (option: Category | "all") => (
                   <DropdownMenuItem
                     key={option ?? "all"}
                     onClick={() => handleSetFilters(column, option)}
                   >
-                    {t(`stocks.categories.${option}`)}
+                    {t(`products.categories.${option}`)}
                   </DropdownMenuItem>
                 ),
-                [undefined, "electronics", "clothing", "food"]
+                ["electronics", "clothing", "food", "all"]
               )}
             </DropdownMenuContent>
           </DropdownMenu>
@@ -157,7 +158,7 @@ export function useStockColumns(
             variant="ghost"
             onClick={() => handleOrder(column)}
           >
-            {t("stocks.table.header.price")}
+            {t("products.table.header.price")}
             <ArrowUpDown
               size={1}
               className={
@@ -178,29 +179,29 @@ export function useStockColumns(
       accessorKey: "actions",
       header: () => (
         <span className="font-bold text-right block w-full">
-          {t("stocks.table.header.actions")}
+          {t("products.table.header.actions")}
         </span>
       ),
       cell: ({ row }) => {
-        const stock = row.original;
+        const product = row.original;
         return (
           <div className="flex items-center gap-3 justify-end w-full">
             {/* Edit button */}
             <button
-              onClick={() => onEdit(stock)}
+              onClick={() => onEdit(product)}
               className="p-2 rounded-full bg-primary/7 hover:bg-primary/10 transition-colors"
             >
               <SquarePen size={14} className="text-primary" />
-              <span className="sr-only">Edit stock</span>
+              <span className="sr-only">Edit product</span>
             </button>
 
             {/* Delete button */}
             <button
-              onClick={() => onDelete?.(stock)}
+              onClick={() => onDelete?.(product)}
               className="p-2 rounded-full bg-red-50 hover:bg-red-100 transition-colors"
             >
               <Trash size={14} className="text-red-600" />
-              <span className="sr-only">Delete stock</span>
+              <span className="sr-only">Delete product</span>
             </button>
           </div>
         );

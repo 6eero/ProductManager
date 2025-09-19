@@ -1,22 +1,23 @@
 "use client";
-import { User2 } from "lucide-react";
+import { LogOut, User2 } from "lucide-react";
 import { SidebarTrigger } from "../ui/sidebar";
 import { useAppContext } from "@/context/App";
 import * as R from "ramda";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import CustomButton from "../buttons/CustomButton";
+import { APP_VERSION } from "@/version";
 
 const AppHeader = () => {
   const context = useAppContext();
 
   const name = R.pathOr("name", ["data", "name"], context);
   const surname = R.pathOr("surname", ["data", "surname"], context);
+  const email = R.pathOr("email@email.com", ["data", "email"], context);
+  const username = R.pathOr("username", ["data", "username"], context);
 
   return (
     <header>
@@ -33,13 +34,26 @@ const AppHeader = () => {
             </button>
           </DropdownMenuTrigger>
 
-          <DropdownMenuContent className="mt-2">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Billing</DropdownMenuItem>
-            <DropdownMenuItem>Team</DropdownMenuItem>
-            <DropdownMenuItem>Subscription</DropdownMenuItem>
+          <DropdownMenuContent className="mt-1 mr-4 flex flex-col gap-8 items-center justify-center p-6">
+            <div className="flex flex-col gap-1 items-center justify-center">
+              <span className="text-[16px] font-medium text-foreground">
+                {`${username}`}
+              </span>
+              <span className="text-[16px] font-medium text-gray-400">
+                {`${email}`}
+              </span>
+            </div>
+            <div className="w-full flex flex-col gap-3 items-center justify-center">
+              <CustomButton
+                disabled
+                className="w-full"
+                text="generic.log_out"
+                icon={<LogOut />}
+              />
+              <span className="text-[12px] font-medium text-gray-400">
+                v{APP_VERSION}
+              </span>
+            </div>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

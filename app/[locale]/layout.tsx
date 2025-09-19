@@ -2,7 +2,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { AppContextProvider } from "@/context/App";
-import { StocksContextProvider } from "@/context/Stocks";
+import { ProductsContextProvider } from "@/context/Products";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import AppSidebar from "@/components/layout/AppSidebar";
 import { User2 } from "lucide-react";
@@ -23,7 +23,7 @@ export default async function LocaleLayout({
 
   return (
     <AppContextProvider>
-      <StocksContextProvider>
+      <ProductsContextProvider>
         <NextIntlClientProvider locale={locale}>
           <SidebarProvider>
             <AppSidebar />
@@ -33,7 +33,7 @@ export default async function LocaleLayout({
             </main>
           </SidebarProvider>
         </NextIntlClientProvider>
-      </StocksContextProvider>
+      </ProductsContextProvider>
     </AppContextProvider>
   );
 }

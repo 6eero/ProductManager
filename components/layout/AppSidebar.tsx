@@ -14,7 +14,7 @@ import Image from "next/image";
 
 const items = [
   {
-    title: "sidebar.stocks",
+    title: "sidebar.products",
     url: "",
     icon: ScanBarcode,
   },

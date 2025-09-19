@@ -1,6 +1,6 @@
 export type Category = "electronics" | "clothing" | "food";
 
-export interface Stock {
+export interface Product {
   id?: string;
   name: string;
   quantity: number;

@@ -13,14 +13,14 @@ export type AppAction = {
   payload?: any;
 };
 
-export type StocksState = {
+export type ProductsState = {
   loading: boolean;
   updating: boolean;
   error: boolean;
   data: any;
 };
 
-export type StocksAction = {
+export type ProductsAction = {
   type: string;
   payload?: any;
 };

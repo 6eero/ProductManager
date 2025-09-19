@@ -1,7 +1,9 @@
 {
   "generic": {
     "copy": "Copia",
-    "copy_done": "Copiato!"
+    "copy_done": "Copiato!",
+    "no_products": "La lista dei prodotti è vuota.",
+    "log_out": "Log Out"
   },
   "validation": {
     "required": "Il campo è obbligatorio",
@@ -12,11 +14,15 @@
     "title": "Ciao mondo!"
   },
   "sidebar": {
-    "stocks": "Prodotti",
+    "products": "Prodotti",
     "settings": "Impostazioni"
   },
   "header": {},
-  "stocks": {
+  "products": {
+    "meta": {
+      "title": "Gestione dei prodotti",
+      "description": "Qui puoi gestire tutti i tuoi prodotti"
+    },
     "title": "Gestione dei prodotti",
     "actions": {
       "search": "Cerca un prodotto per codice o per nome...",
@@ -48,7 +54,7 @@
         }
       },
       "edit": {
-        "title": "Modifica titolo",
+        "title": "Modifica il prodotto",
         "description": "Aggiorna i campi desiderati. Dopo l'invio, le modifiche saranno applicate alla tua lista.",
         "ok": "Salva modifiche",
         "cancel": "Annulla"
@@ -61,7 +67,7 @@
       }
     },
     "categories": {
-      "undefined": "Tutto",
+      "all": "Tutto",
       "electronics": "Elettronica",
       "clothing": "Abbigliamento",
       "food": "Alimentari"

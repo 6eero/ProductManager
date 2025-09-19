@@ -1,6 +1,6 @@
-import { Stock } from "@/models/stocks";
+import { Product } from "@/models/products";
 
-export const stocksMock: Stock[] = [
+export const productsMock: Product[] = [
   {
     id: "3021b68a-1fa9-4f69-86a3-ee5a63fca838",
     name: "Smartphone",

@@ -43,7 +43,7 @@ const FormikSelect = ({
   };
 
   return (
-    <div className={cn("grid gap-3", className)}>
+    <div className={cn("grid gap-1", className)}>
       <div className={required ? "flex gap-1" : ""}>
         {required && <span className="text-secondary">*</span>}
         <Label htmlFor={name}>{t(label)}</Label>

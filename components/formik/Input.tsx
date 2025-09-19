@@ -28,7 +28,7 @@ const FormikInput = ({
   const showError = touched && error && typeof error === "string";
 
   return (
-    <div className="grid">
+    <div className="grid gap-1">
       <div className={required ? "flex gap-1" : ""}>
         {required && <span className="text-secondary">*</span>}
         <Label htmlFor={name}>{t(label)}</Label>

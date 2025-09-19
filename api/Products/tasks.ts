@@ -1,10 +1,10 @@
-import { useStocksDispatchContext } from "@/context/Stocks";
-import actions from "@/modules/stocks/actions";
-import * as APIStocks from "./endpoint";
-import { Stock } from "@/models/stocks";
+import { useProductsDispatchContext } from "@/context/Products";
+import actions from "@/modules/products/actions";
+import * as APIProducts from "./endpoint";
+import { Product } from "@/models/products";
 
-export const useStocksActions = () => {
-  const dispatch = useStocksDispatchContext();
+export const useProductsActions = () => {
+  const dispatch = useProductsDispatchContext();
   const delay = (ms: number) =>
     new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -12,17 +12,17 @@ export const useStocksActions = () => {
     onLoad: async () => {
       try {
         dispatch(actions.get({}));
-        const { data } = await APIStocks.get();
+        const { data } = await APIProducts.get();
         dispatch(actions.getSuccess({ data }));
       } catch (error) {
         dispatch(actions.getFail({ error }));
       }
     },
 
-    onAdd: async (stock: Stock, stocks: Stock[]) => {
+    onAdd: async (product: Product, products: Product[]) => {
       try {
         dispatch(actions.add({}));
-        const { data } = await APIStocks.add(stock, stocks);
+        const { data } = await APIProducts.add(product, products);
         await delay(500);
         dispatch(actions.addSuccess({ data }));
       } catch (error) {
@@ -30,10 +30,10 @@ export const useStocksActions = () => {
       }
     },
 
-    onRemove: async (id: string, stocks: Stock[]) => {
+    onRemove: async (id: string, products: Product[]) => {
       try {
         dispatch(actions.remove({}));
-        const { data } = await APIStocks.remove(id, stocks);
+        const { data } = await APIProducts.remove(id, products);
         await delay(500);
         dispatch(actions.removeSuccess({ data }));
       } catch (error) {
@@ -41,10 +41,10 @@ export const useStocksActions = () => {
       }
     },
 
-    onUpdate: async (stock: Stock, stocks: Stock[]) => {
+    onUpdate: async (product: Product, products: Product[]) => {
       try {
         dispatch(actions.update({}));
-        const { data } = await APIStocks.update(stock, stocks);
+        const { data } = await APIProducts.update(product, products);
         await delay(500);
         dispatch(actions.updateSuccess({ data }));
       } catch (error) {

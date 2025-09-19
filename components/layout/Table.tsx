@@ -15,6 +15,7 @@ import { Table as TableType } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Loading from "./Loading";
+import { useTranslations } from "next-intl";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -29,6 +30,7 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
   const currentPage = table.getState().pagination.pageIndex;
   const pageCount = table.getPageCount();
+  const t = useTranslations("");
 
   return (
     <div className="relative rounded-md border bg-white p-4 shadow-xs flex flex-col gap-6">
@@ -83,7 +85,7 @@ export function DataTable<TData, TValue>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  <span>{t("generic.no_products")}</span>
                 </TableCell>
               </TableRow>
             )}
