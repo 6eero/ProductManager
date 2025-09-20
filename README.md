@@ -62,7 +62,23 @@ A modern single-page application for warehouse inventory management built with N
 
 ## State Management Architecture
 
-The application follows a structured state management pattern using React Context API with useReducer:
+The application follows a structured state management pattern using **React Context API** to manage global and feature-specific state. The **App-level context** wraps the entire component tree, while each module (e.g., Products) has its own dedicated context to encapsulate its state.
+
+A module’s context is a structured object with fields such as:
+
+- `data` – main module payload
+- `loading` – boolean indicating ongoing operations
+- `error` – error information
+
+State should **never be mutated directly**. All updates occur through **dispatched actions** handled by the module’s reducer, ensuring unidirectional data flow and predictable state transitions.
+
+This architecture provides:
+
+- Centralized and consistent state management
+- Isolation of module-specific state to prevent collisions
+- Clear, traceable updates for easier debugging and testing
+
+By following this pattern, the application remains **scalable, maintainable, and easy to extend** as new features are added.
 
 ### 1. Actions (`modules/products/actions.ts`)
 
