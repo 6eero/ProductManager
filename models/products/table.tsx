@@ -188,6 +188,7 @@ export function useProductColumns(
           <div className="flex items-center gap-3 justify-end w-full">
             {/* Edit button */}
             <button
+              data-testid="edit-product-btn"
               onClick={() => onEdit(product)}
               className="p-2 rounded-full bg-primary/7 hover:bg-primary/10 transition-colors"
             >
@@ -197,6 +198,7 @@ export function useProductColumns(
 
             {/* Delete button */}
             <button
+              data-testid="delete-product-btn"
               onClick={() => onDelete?.(product)}
               className="p-2 rounded-full bg-red-50 hover:bg-red-100 transition-colors"
             >

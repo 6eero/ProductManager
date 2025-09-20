@@ -135,6 +135,7 @@ const Products = () => {
           disabled={updating}
         />
         <CustomButton
+          data-testid="add-product-btn"
           onClick={() => setIsAddModalOpen(true)}
           text={"products.actions.add"}
           icon={<Plus />}

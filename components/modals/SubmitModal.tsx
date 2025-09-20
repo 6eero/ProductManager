@@ -35,7 +35,7 @@ const SubmitModal = ({
 
   return (
     <Dialog open={open}>
-      <form>
+      <form onSubmit={(e) => e.preventDefault()}>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2 mb-2">
@@ -47,9 +47,15 @@ const SubmitModal = ({
           {children}
           <DialogFooter>
             <DialogClose asChild onClick={() => setOpen(false)}>
-              <Button variant="outline">{t(cancelButtonText)}</Button>
+              <Button variant="outline" data-testid="submit-modal-cancel">
+                {t(cancelButtonText)}
+              </Button>
             </DialogClose>
-            <Button type="button" onClick={onSubmit}>
+            <Button
+              type="button"
+              onClick={onSubmit}
+              data-testid="submit-modal-ok"
+            >
               {t(okButtonText)}
             </Button>
           </DialogFooter>

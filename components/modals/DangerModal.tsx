@@ -50,9 +50,16 @@ const DangerModal = ({
           {children}
           <DialogFooter>
             <DialogClose asChild onClick={() => setOpen(false)}>
-              <Button variant="outline">{t(cancelButtonText)}</Button>
+              <Button data-testid="danger-cancel-btn" variant="outline">
+                {t(cancelButtonText)}
+              </Button>
             </DialogClose>
-            <Button variant="destructive" type="submit" onClick={handleSubmit}>
+            <Button
+              data-testid="danger-ok-btn"
+              variant="destructive"
+              type="submit"
+              onClick={handleSubmit}
+            >
               {t(okButtonText)}
             </Button>
           </DialogFooter>

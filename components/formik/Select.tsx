@@ -50,7 +50,7 @@ const FormikSelect = ({
       </div>
 
       <Select value={formik.values[name]} onValueChange={handleChange}>
-        <SelectTrigger className="w-full">
+        <SelectTrigger className="w-full" data-testid={name}>
           <SelectValue placeholder={t(placeholder)} />
         </SelectTrigger>
         <SelectContent>

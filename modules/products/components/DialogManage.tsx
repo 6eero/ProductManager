@@ -54,6 +54,7 @@ const DialogManage = ({
           <div className="flex flex-col gap-6 my-4">
             {/* campi comuni */}
             <FormikInput
+              data-testid="input-name"
               name="name"
               label={"products.modals.add.fields.name.label"}
               placeholder={"products.modals.add.fields.name.placeholder"}
@@ -61,6 +62,7 @@ const DialogManage = ({
               required
             />
             <FormikInput
+              data-testid="input-quantity"
               name="quantity"
               label={"products.modals.add.fields.quantity.label"}
               placeholder={"products.modals.add.fields.quantity.placeholder"}
@@ -68,6 +70,7 @@ const DialogManage = ({
               required
             />
             <FormikSelect
+              data-testid="select-category"
               name="category"
               label={"products.modals.add.fields.category.label"}
               placeholder={"products.modals.add.fields.category.placeholder"}
@@ -76,6 +79,7 @@ const DialogManage = ({
               options={getCategories(t)}
             />
             <FormikInput
+              data-testid="input-price"
               name="price"
               label={"products.modals.add.fields.price.label"}
               placeholder={"products.modals.add.fields.price.placeholder"}
