@@ -8,7 +8,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { ScanBarcode, Settings } from "lucide-react";
+import { ScanBarcode } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
@@ -18,11 +18,11 @@ const items = [
     url: "",
     icon: ScanBarcode,
   },
-  {
-    title: "sidebar.settings",
-    url: "/settings",
-    icon: Settings,
-  },
+  // {
+  //   title: "sidebar.settings",
+  //   url: "/settings",
+  //   icon: Settings,
+  // },
 ];
 
 const AppSidebar = () => {

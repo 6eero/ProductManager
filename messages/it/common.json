@@ -3,7 +3,8 @@
     "copy": "Copia",
     "copy_done": "Copiato!",
     "no_products": "La lista dei prodotti è vuota.",
-    "log_out": "Log Out"
+    "log_out": "Log Out",
+    "change_language": "Cambia Lingua"
   },
   "validation": {
     "required": "Il campo è obbligatorio",

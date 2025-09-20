@@ -3,7 +3,8 @@
     "copy": "Copy",
     "copy_done": "Copied!",
     "no_products": "No products available.",
-    "log_out": "Log Out"
+    "log_out": "Log Out",
+    "change_language": "Change Language"
   },
   "validation": {
     "required": "This field is required",
