@@ -4,7 +4,9 @@
     "copy_done": "Copiato!",
     "no_products": "La lista dei prodotti è vuota.",
     "log_out": "Log Out",
-    "change_language": "Cambia Lingua"
+    "change_language": "Cambia Lingua",
+    "prev_page": "Pagina precedente",
+    "next_page": "Pagina successiva"
   },
   "validation": {
     "required": "Il campo è obbligatorio",
@@ -74,6 +76,7 @@
       "food": "Alimentari"
     },
     "table": {
+      "filter_category": "Filtra per categoria",
       "header": {
         "id": "Codice",
         "name": "Prodotto",

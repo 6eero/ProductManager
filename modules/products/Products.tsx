@@ -128,6 +128,7 @@ const Products = () => {
       <h1 className="text-2xl font-medium mb-10">{t("products.title")}</h1>
       <div className="flex justify-between items-center mb-4">
         <Input
+          aria-label={t("products.actions.search")}
           placeholder={t("products.actions.search")}
           className="bg-white w-[500px]"
           value={globalFilter ?? ""}

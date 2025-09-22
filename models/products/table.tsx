@@ -122,7 +122,10 @@ export function useProductColumns(
         Filter: ({ column }: any) => (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="ml-1.5">
+              <button
+                className="ml-1.5"
+                aria-label={"products.table.filter_category"}
+              >
                 <Filter
                   className={
                     isFiltering

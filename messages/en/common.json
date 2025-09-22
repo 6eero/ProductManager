@@ -4,7 +4,9 @@
     "copy_done": "Copied!",
     "no_products": "No products available.",
     "log_out": "Log Out",
-    "change_language": "Change Language"
+    "change_language": "Change Language",
+    "prev_page": "Previous page",
+    "next_page": "Next page"
   },
   "validation": {
     "required": "This field is required",
@@ -74,6 +76,7 @@
       "food": "Food"
     },
     "table": {
+      "filter_category": "Filter by category",
       "header": {
         "id": "Code",
         "name": "Product",
