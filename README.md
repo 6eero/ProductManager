@@ -216,7 +216,7 @@ Comprehensive end-to-end testing ensures application reliability:
 1. **Clone the repository**
 
    ```bash
-   git clone git@github.com:6eero/ProductManager.git
+   git clone https://github.com/6eero/ProductManager.git
    cd ProductManager/
    ```
 
